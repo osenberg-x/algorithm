@@ -1,27 +1,7 @@
+use algorithm::binary_search;
 use algorithm::insertion_sort;
 use algorithm::random_numbers_to_array;
-use core::num;
-use std::{
-    iter::Inspect,
-    time::{self, Duration, Instant},
-};
-
-fn binary_search(array: &[i32], number: i32) {
-    let size = array.len();
-    let mid = size / 2;
-    if array[mid] == number {
-        println!("Has finded number: {}", number);
-        return;
-    } else if mid == 0 {
-        return;
-    } else if array[mid] < number {
-        binary_search(&array[mid..size], number);
-    } else if array[mid] > number {
-        binary_search(&array[0..mid], number);
-    }
-
-    return;
-}
+use std::time::Instant;
 
 fn main() {
     println!("binary search!");

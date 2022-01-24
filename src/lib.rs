@@ -3,6 +3,7 @@ use rand::Rng;
 use std::io;
 use std::time::{self, Duration, Instant};
 
+/// 随机的生成 i32 类型的整数， 生成的个数为传入数组的元素个数
 pub fn random_numbers_to_array(array: &mut [i32]) {
     for index in 0..array.len() {
         let number: i32 = rand::thread_rng().gen_range(i32::MIN..i32::MAX);
@@ -10,6 +11,7 @@ pub fn random_numbers_to_array(array: &mut [i32]) {
     }
 }
 
+/// 让用户输入指定数目的 i32 类型整数， 生成的个数为传入数组的元素个数
 pub fn input_numbers_to_array(array: &mut [i32]) {
     let size = array.len();
 
@@ -23,6 +25,7 @@ pub fn input_numbers_to_array(array: &mut [i32]) {
     }
 }
 
+/// 插入排序
 pub fn insertion_sort(array: &mut [i32]) -> Duration {
     let now = Instant::now();
     let size = array.len();
@@ -37,4 +40,26 @@ pub fn insertion_sort(array: &mut [i32]) -> Duration {
         }
     }
     return now.elapsed();
+}
+
+/// 二分查找
+///
+/// 算法复杂度: T(log2^n)
+///
+/// `注意: 查找的列表需要是排序好的`
+pub fn binary_search(array: &[i32], number: i32) {
+    let size = array.len();
+    let mid = size / 2;
+    if array[mid] == number {
+        println!("Has finded number: {}", number);
+        return;
+    } else if mid == 0 {
+        return;
+    } else if array[mid] < number {
+        binary_search(&array[mid..size], number);
+    } else if array[mid] > number {
+        binary_search(&array[0..mid], number);
+    }
+
+    return;
 }
