@@ -44,22 +44,24 @@ pub fn insertion_sort(array: &mut [i32]) -> Duration {
 
 /// 二分查找
 ///
+/// 返回查找目标在数组中的下标
+///
 /// 算法复杂度: T(log2^n)
 ///
-/// `注意: 查找的列表需要是排序好的`
-pub fn binary_search(array: &[i32], number: i32) {
-    let size = array.len();
-    let mid = size / 2;
-    if array[mid] == number {
-        println!("Has finded number: {}", number);
-        return;
-    } else if mid == 0 {
-        return;
-    } else if array[mid] < number {
-        binary_search(&array[mid..size], number);
-    } else if array[mid] > number {
-        binary_search(&array[0..mid], number);
+/// `注意: 查找的数组需要是排序好的`
+/// `排序算法用的插入排序，可自行替换其他排序方法`
+pub fn binary_search(array: &[i32], number: i32) -> Option<i32> {
+    let mut min_size = 0;
+    let mut max_size = array.len();
+    while min_size <= max_size {
+        let mid = (min_size + max_size) / 2;
+        if array[mid] == number {
+            return Some(mid as i32);
+        } else if array[mid] > number {
+            max_size = mid - 1;
+        } else if array[mid] < number {
+            min_size = mid + 1;
+        }
     }
-
-    return;
+    return None;
 }

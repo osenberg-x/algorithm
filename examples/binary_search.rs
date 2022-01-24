@@ -13,8 +13,15 @@ fn main() {
     println!("sort elapsed time: {}", sort_elapsed_time.as_micros());
 
     let now = Instant::now();
-    // binary_search(&need_search_array, 123);
-    binary_search(&need_search_array, need_search_array[0]);
+    let res = binary_search(&need_search_array, 123);
+    // let res = binary_search(&need_search_array, need_search_array[6]);
+    println!(
+        "result of search: {}",
+        match res {
+            Some(number) => number,
+            None => -1,
+        }
+    );
     let elapsed_time = now.elapsed();
     println!("elapsed time: {}", elapsed_time.as_micros());
 }
