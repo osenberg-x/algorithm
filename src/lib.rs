@@ -1,7 +1,6 @@
-use core::num;
 use rand::Rng;
 use std::io;
-use std::time::{self, Duration, Instant};
+use std::time::{Duration, Instant};
 
 /// 随机的生成 i32 类型的整数， 生成的个数为传入数组的元素个数
 pub fn random_numbers_to_array(array: &mut [i32]) {
@@ -64,4 +63,55 @@ pub fn binary_search(array: &[i32], number: i32) -> Option<i32> {
         }
     }
     return None;
+}
+
+/// 链表
+mod linked_list {
+    /// 单链表实现
+    pub struct SingleLinkedList {
+        number: i32,
+        next: Option<Box<SingleLinkedList>>,
+    }
+
+    impl SingleLinkedList {
+        fn new() -> SingleLinkedList {
+            SingleLinkedList {
+                number: 0,
+                next: None,
+            }
+        }
+
+        /// 在末尾添加节点
+        fn append(&mut self, node: Option<Box<SingleLinkedList>>) -> bool {
+            while self.next != None {}
+            true
+        }
+
+        /// 在指定位置添加节点
+        fn insert(location: i32, node: Option<Box<SingleLinkedList>>) -> bool {
+            true
+        }
+
+        /// 删除指定位置节点
+        fn delete(number: i32) -> bool {
+            true
+        }
+
+        /// 反转整个链表
+        fn reverse() -> bool {
+            true
+        }
+
+        /// 返回并删除第一个节点
+        fn pop() -> Option<Box<SingleLinkedList>> {
+            None
+        }
+
+        fn back() -> Option<Box<SingleLinkedList>> {
+            None
+        }
+
+        /// 清除整个链表
+        fn clear() {}
+    }
 }
