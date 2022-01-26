@@ -68,13 +68,14 @@ pub fn binary_search(array: &[i32], number: i32) -> Option<i32> {
 /// 链表
 mod linked_list {
     /// 单链表实现
+    #[derive(PartialEq)]
     pub struct SingleLinkedList {
         number: i32,
         next: Option<Box<SingleLinkedList>>,
     }
 
     impl SingleLinkedList {
-        fn new() -> SingleLinkedList {
+        fn new() -> Self {
             SingleLinkedList {
                 number: 0,
                 next: None,
@@ -83,7 +84,18 @@ mod linked_list {
 
         /// 在末尾添加节点
         fn append(&mut self, node: Option<Box<SingleLinkedList>>) -> bool {
-            while self.next != None {}
+            // let mut n = self.next.as_ref();
+            while let Some(ref mut n) = self.next {
+                match n.next {
+                    Some(_) => {
+                        n = match n.next {
+                            Some(ref mut m) => m,
+                            None => None,
+                        }
+                    }
+                    None => n.next = node,
+                }
+            }
             true
         }
 
