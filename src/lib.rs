@@ -67,45 +67,44 @@ pub fn binary_search(array: &[i32], number: i32) -> Option<i32> {
 
 /// 链表
 mod linked_list {
+    // https://zhuanlan.zhihu.com/p/341626700
+    use std::rc::Rc;
+
+    pub type Link<T> = Option<Rc<Node<T>>>;
+
+    pub struct Node<T> {
+        element: T,
+        next: Link<T>,
+    }
     /// 单链表实现
-    #[derive(PartialEq)]
-    pub struct SingleLinkedList {
-        number: i32,
-        next: Option<Box<SingleLinkedList>>,
+    pub struct SingleLinkedList<T> {
+        head: Link<T>,
+        tail: Link<T>,
     }
 
-    impl SingleLinkedList {
+    impl<T> SingleLinkedList<T> {
         fn new() -> Self {
             SingleLinkedList {
-                number: 0,
-                next: None,
+                head: None,
+                tail: None,
             }
         }
 
         /// 在末尾添加节点
-        fn append(&mut self, node: Option<Box<SingleLinkedList>>) -> bool {
-            // let mut n = self.next.as_ref();
-            while let Some(ref mut n) = self.next {
-                match n.next {
-                    Some(_) => {
-                        n = match n.next {
-                            Some(ref mut m) => m,
-                            None => None,
-                        }
-                    }
-                    None => n.next = node,
-                }
-            }
+        fn append(&mut self, element: T) -> bool {
+            // if self.head == None {
+            //     self.head =
+            // }
             true
         }
 
         /// 在指定位置添加节点
-        fn insert(location: i32, node: Option<Box<SingleLinkedList>>) -> bool {
+        fn insert(location: i32, element: T) -> bool {
             true
         }
 
         /// 删除指定位置节点
-        fn delete(number: i32) -> bool {
+        fn delete(element: T) -> bool {
             true
         }
 
@@ -114,12 +113,23 @@ mod linked_list {
             true
         }
 
-        /// 返回并删除第一个节点
-        fn pop() -> Option<Box<SingleLinkedList>> {
+        /// 返回第一个节点
+        fn front() -> Link<T> {
             None
         }
 
-        fn back() -> Option<Box<SingleLinkedList>> {
+        /// 返回最后一个节点
+        fn back() -> Link<T> {
+            None
+        }
+
+        /// 返回并删除第一个节点
+        fn pop_front() -> Link<T> {
+            None
+        }
+
+        /// 返回并删除最后一个节点
+        fn pop_back() -> Link<T> {
             None
         }
 
