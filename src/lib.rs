@@ -41,6 +41,43 @@ pub fn insertion_sort(array: &mut [i32]) -> Duration {
     return now.elapsed();
 }
 
+/// 选择排序
+///
+/// 遍历所有元素，将符合条件的元素放入新的数组，形成有序的新数组
+///
+/// 算法复杂度: T(n^2)
+///
+/// `此示例中使用按照升序排序`
+pub fn selection_sort(array: &[i32], result: &mut [i32]) -> Duration {
+    let now = Instant::now();
+    let mut min = array[0];
+    let size = array.len();
+    let mut indexs: Vec<usize> = Vec::new();
+    let mut index = 0;
+    for i in 0..size {
+        for m in 0..size {
+            if !indexs.contains(&m) {
+                min = array[m];
+                break;
+            }
+        }
+
+        for j in 0..size {
+            if indexs.contains(&j) {
+                continue;
+            }
+            if min >= array[j] {
+                min = array[j];
+                index = j;
+            }
+        }
+        result[i] = min;
+        indexs.push(index);
+    }
+
+    return now.elapsed();
+}
+
 /// 二分查找
 ///
 /// 返回查找目标在数组中的下标
