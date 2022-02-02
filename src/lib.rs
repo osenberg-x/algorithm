@@ -5,7 +5,7 @@ use std::time::{Duration, Instant};
 /// 随机的生成 i32 类型的整数， 生成的个数为传入数组的元素个数
 pub fn random_numbers_to_array(array: &mut [i32]) {
     for index in 0..array.len() {
-        let number: i32 = rand::thread_rng().gen_range(i32::MIN..i32::MAX);
+        let number: i32 = rand::thread_rng().gen_range(0..10000);
         array[index] = number;
     }
 }
@@ -94,6 +94,42 @@ pub fn sum_by_recursion(array: &[i32]) -> i32 {
         return array[0];
     } else {
         return array[0] + sum_by_recursion(&array[1..array.len()]);
+    }
+}
+
+/// 快速排序
+///
+/// 步骤:
+///
+/// 1. 选择基准值
+///
+/// 2. 将数组分成两个数组： 小于基准值的元素和大于基准值的元素
+///
+/// 3. 对两个子数组进行快速排序
+pub fn quick_sort(array: &Vec<i32>) -> Vec<i32> {
+    let size = array.len();
+    if size < 2 {
+        return array.clone();
+    } else {
+        let index: usize = rand::thread_rng().gen_range(0..size);
+        let base_number = array[index];
+        let mut less: Vec<i32> = Vec::new();
+        let mut greater: Vec<i32> = Vec::new();
+        for i in 0..size {
+            if array[i] <= base_number {
+                less.push(array[i]);
+            } else {
+                greater.push(array[i]);
+            }
+        }
+
+        let mut head = quick_sort(&less);
+        let tail = quick_sort(&greater);
+
+        // head.extend_from_slice(&vec![base_number]);
+        head.extend_from_slice(tail.as_slice());
+
+        return head;
     }
 }
 
