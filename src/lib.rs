@@ -78,6 +78,25 @@ pub fn selection_sort(array: &[i32], result: &mut [i32]) -> Duration {
     return now.elapsed();
 }
 
+/// 分而治之(D&C, divide and conquer)思想
+///
+/// 递归式解决问题的方法
+///
+/// 步骤：
+///
+/// 1.找出基线条件，这种条件尽可能简单。
+///
+/// 2.不断将问题分解（或者说缩小规模），直到符合基线条件
+///
+/// 求数组所有元素的和
+pub fn sum_by_recursion(array: &[i32]) -> i32 {
+    if array.len() == 1 {
+        return array[0];
+    } else {
+        return array[0] + sum_by_recursion(&array[1..array.len()]);
+    }
+}
+
 /// 二分查找
 ///
 /// 返回查找目标在数组中的下标
