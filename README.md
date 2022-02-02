@@ -2,7 +2,7 @@
  * @Copyright: xvsos
  * @Author: xvs
  * @Date: 2022-02-01 11:23:32
- * @LastEditTime: 2022-02-02 15:20:04
+ * @LastEditTime: 2022-02-02 16:14:58
  * @LastEditors: OsenbergQu
  * @FilePath: /algorithm/README.md
  * @Description: 
@@ -15,10 +15,17 @@ Implemention of basic algorithm and data structure by Rust.
 ```
 cargo run
 ```
+
+## Show doc
+```
+cargo doc --open
+```
+
 ## Insertion Sort
 ```
 cargo run --example insertion_sort
 ```
+
 ## Binary Search
 ```
 cargo run --example binary_search
